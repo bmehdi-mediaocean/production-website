@@ -2,7 +2,7 @@
   "name": "react-production-app",
   "version": "0.1.0",
   "homepage": "https://bmehdi-mediaocean.github.io/production-website",
-  "private": true,
+  "private": false,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
