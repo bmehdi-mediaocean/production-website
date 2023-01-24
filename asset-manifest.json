@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/bmehdi-mediaocean/production-website/static/css/main.abfcea87.css",
+    "main.js": "/bmehdi-mediaocean/production-website/static/js/main.00eb55b9.js",
+    "index.html": "/bmehdi-mediaocean/production-website/index.html",
+    "main.abfcea87.css.map": "/bmehdi-mediaocean/production-website/static/css/main.abfcea87.css.map",
+    "main.00eb55b9.js.map": "/bmehdi-mediaocean/production-website/static/js/main.00eb55b9.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.abfcea87.css",
+    "static/js/main.00eb55b9.js"
+  ]
+}
