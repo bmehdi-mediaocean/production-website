@@ -19,7 +19,7 @@ function Header() {
                     textAlign: "center",
                 }}
             >
-                Jobseee
+                Jobs
             </h1>
         </header>
     );
