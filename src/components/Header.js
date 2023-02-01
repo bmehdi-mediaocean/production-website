@@ -12,7 +12,7 @@ function Header() {
                 style={{
                     fontSize: "6rem",
                     fontWeight: "600",
-                    marginBottom: "2rem",
+                    marginBottom: "2rem", 
                     lineHeight: "1em",
                     color: "#ececec",
                     textTransform: "lowercase",
