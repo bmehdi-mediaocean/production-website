@@ -11,6 +11,7 @@ class ProdJobs extends React.Component {
                   job={job}
                   handleChangeProps={this.props.handleChangeProps}
                   deleteJobProps={this.props.deleteJobProps}
+                  setUpdate={this.props.setUpdate}
                 />
             ))}
         </ul>

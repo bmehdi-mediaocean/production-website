@@ -60,6 +60,17 @@ class ProdContainer extends React.Component {
     });
   };
 
+  setUpdate = (updatedTitle, id) => {
+    this.setState({
+      jobs: this.state.jobs.map(job => {
+        if (job.id === id) {
+          job.title = updatedTitle
+        }
+        return job
+      }),
+    })
+  }
+
   render() {
     return (
       <div className="container">
@@ -73,6 +84,7 @@ class ProdContainer extends React.Component {
             jobs={this.state.jobs}
             handleChangeProps={this.handleChange}
             deleteJobProps={this.delJob}
+            setUpdate={this.setUpdate}
           />
         </div>
       </div>
