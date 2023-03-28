@@ -24,25 +24,40 @@ h1 {
     line-height: 2.25rem; /* 36px */
     padding-bottom: 2px;
     font-family: "Lato-Bold";
+    text-align: center;
 }
 
 .forms {
     margin-top: 6px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 h2 {
     font-size: 1.5rem; /* 24px */
     line-height: 2rem; /* 32px */
     color: rgb(107, 114, 128);
-    padding-bottom: 6px;
+    width: 100%;
 }
 
 .halfSections {
-    padding-bottom: 4px;
+    padding-top: 8px;
+    width: 50%;
+}
+
+.leftSections {
+    padding-right: 8px;
+}
+
+.rightSections {
+    padding-left: 8px;
 }
 
 .fullSections {
-    padding-bottom: 4px;
+    padding-top: 8px;
+    width: 100%;
 }
 
 label {
@@ -56,9 +71,9 @@ label {
 input {
     border-width: 2px;
     border-color: rgb(107, 114, 128);
-    padding: 2px;
+    padding: 5px;
     border-radius: 0.375rem; /* 6px */
-    width: 50%;
+    width: 100%;
 }
 
 input:focus {
@@ -68,4 +83,16 @@ input:focus {
 
 input[type=date] {
     text-transform: uppercase;
+}
+
+.halfInput {
+    width: 49%;
+}
+
+.leftInput {
+    margin-right: 1%;
+}
+
+.rightInput {
+    margin-left: 1%;
 }
