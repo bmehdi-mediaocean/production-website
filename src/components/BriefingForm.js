@@ -117,7 +117,99 @@ class BriefingForm extends React.Component {
                         </div>
                         <div className={styles.halfSections + ' ' + styles.rightSections}>
                             <label>Feed Integrations</label>
-                            <input type='checkbox' name='noFeed' /><label htmlFor='noFeed'>No Feed</label>
+                            <div className={styles.checkbox}>
+                                <input 
+                                    className={styles.checkboxInput}
+                                    type='checkbox'
+                                    name='noFeed'
+                                />
+                                <label
+                                    className={styles.checkboxLabel}
+                                    htmlFor='noFeed'
+                                >No Feed</label>
+                            </div>
+                            <div className={styles.checkbox}>
+                                <input 
+                                    className={styles.checkboxInput}
+                                    type='checkbox'
+                                    name='prodFeed'
+                                />
+                                <label
+                                    className={styles.checkboxLabel}
+                                    htmlFor='prodFeed'
+                                >Product Feed (Retargeting)</label>
+                            </div>
+                            <div className={styles.checkbox}>
+                                <input 
+                                    className={styles.checkboxInput}
+                                    type='checkbox'
+                                    name='storeLocFeed'
+                                />
+                                <label
+                                    className={styles.checkboxLabel}
+                                    htmlFor='storeLocFeed'
+                                >Store Locator Feed</label>
+                            </div>
+                            <div className={styles.checkbox}>
+                                <input 
+                                    className={styles.checkboxInput}
+                                    type='checkbox'
+                                    name='weatherFeed'
+                                />
+                                <label
+                                    className={styles.checkboxLabel}
+                                    htmlFor='weatherFeed'
+                                >Weather Feed</label>
+                            </div>
+                            <div className={styles.checkbox}>
+                                <input 
+                                    className={styles.checkboxInput}
+                                    type='checkbox'
+                                    name='eventFeed'
+                                />
+                                <label
+                                    className={styles.checkboxLabel}
+                                    htmlFor='eventFeed'
+                                >Live Event Feed</label>
+                            </div>
+                            <div className={styles.checkbox}>
+                                <input 
+                                    className={styles.checkboxInput}
+                                    type='checkbox'
+                                    name='otherFeed'
+                                />
+                                <label
+                                    className={styles.checkboxLabel}
+                                    htmlFor='otherFeed'
+                                >Other Feed</label>
+                            </div>
+                        </div>
+                        <div className={styles.fullSections}>
+                            <label htmlFor='projectDesc'>Project Description <span className={styles.required}>*</span></label>
+                            <textarea
+                                name='projectDesc'
+                                rows='5'
+                                placeholder='Type Here'
+                                required
+                            ></textarea>
+                        </div>
+                        <div className={styles.fullSections}>
+                            <label htmlFor='businessObj'>Business Objective & KPI's <span className={styles.required}>*</span></label>
+                            <textarea
+                                name='businessObj'
+                                rows='5'
+                                placeholder='Type Here'
+                                required
+                            ></textarea>
+                        </div>
+                        <hr/>
+                        <h2>Design</h2>
+                        <div className={styles.fullSections}>
+                            <label htmlFor='suppliedDesigns'>Designs To Be Supplied By <span className={styles.required}>*</span></label>
+                            <select name='suppliedDesigns'  className={styles.select}>
+                                <option>Client</option>
+                                <option>Flashtalking</option>
+                            </select>
                         </div>
                     </div>
                 </div>
