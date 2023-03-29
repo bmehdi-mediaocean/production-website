@@ -2,8 +2,11 @@ import React from 'react';
 import styles from './BriefingForm.module.scss';
 import formImage from '../images/flashtalking_production_logo.png';
 import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
 function BriefingForm() {
+
+    const yesterday = new Date(Date.now() -86400000);
 
     /* Formik Logic */
     const formik = useFormik({
@@ -19,7 +22,55 @@ function BriefingForm() {
             dynVerSetup: '', backupMessaging: '', assetLink: '', addNotes: '',
             addURL: ''
         },
+
+        //Validate Form
+        validationSchema: Yup.object({
+            projectTitle: Yup.string().required('Project Title is required'),
+            campaignLiveDate: Yup.date().min(yesterday, 'Date cannot be in the past').required('Campaign Live Date is required'),
+            firstName: Yup.string().required('First Name is required'),
+            lastName: Yup.string(),
+            email: Yup.string().email('Must be a valid email').required('Email is required'),
+            mediaBuyer: Yup.string(),
+            mediaBuyerEmail: Yup.string().email('Must be a valid email'),
+            ftCMFirstName: Yup.string().required('First Name is required'),
+            ftCMLastName: Yup.string(),
+            adFileLimit: Yup.string(),
+            sizesRequired: Yup.string().required('Creative Sizes are required'),
+            addLanguages: Yup.string(),
+            dynVersions: Yup.string().oneOf(['Only a single version required', '2 - 5 versions', '6 - 20 versions', '20+ versions']),
+            noFeed: Yup.boolean(),
+            prodFeed: Yup.boolean(),
+            storeLocFeed: Yup.boolean(),
+            weatherFeed: Yup.boolean(),
+            eventFeed: Yup.boolean(),
+            otherFeed: Yup.boolean(),
+            projectDesc: Yup.mixed().required('Project Description is required'),
+            businessObj: Yup.mixed().required('Business Objective is required'),
+            suppliedDesigns: Yup.string().oneOf(['Client', 'Flashtalking'], 'Designs To Be Supplied By').required('Designs Supplier is required'),
+            brandGuidelines: Yup.boolean(),
+            brandFonts: Yup.boolean(),
+            logos: Yup.boolean(),
+            artwork: Yup.boolean(),
+            videos: Yup.boolean(),
+            messaging: Yup.boolean(),
+            assetsDate: Yup.date().min(yesterday, "Date cannot be in the past"),
+            signOffEmail: Yup.string().email('Must be a valid email'),
+            specFunc: Yup.mixed(),
+            specTrack: Yup.mixed(),
+            dynVerSetup: Yup.string().oneOf(['Flashtalking', 'Client', 'Creative Agency', 'Other']),
+            backupMessaging: Yup.mixed(),
+            assetLink: Yup.string().url('Must be a valid URL'),
+            addNotes: Yup.mixed(),
+            addURL: Yup.string().url('Must be a valid URL')
+        }),
+
+        //Submit Form
+        onSubmit: (values) => {
+            console.log(values);
+        },
     });
+
+    console.log(formik.errors);
 
     return (
         <main>
@@ -31,7 +82,7 @@ function BriefingForm() {
                     alt='flashtalking-production-logo'
                 />
             </div>
-            <form>
+            <form onSubmit={formik.handleSubmit}>
 
                 <div className={styles.formBody}>
 
@@ -41,28 +92,39 @@ function BriefingForm() {
 
                         <h2>Project Details</h2>
                         <div className={styles.halfSections + ' ' + styles.leftSections}>
-                            <label htmlFor='projectTitle'>Project Title <span className={styles.required}>*</span></label>
+                            <label
+                                htmlFor='projectTitle' className={formik.touched.projectTitle && formik.errors.projectTitle ? styles.required : ''}>
+                                {formik.touched.projectTitle && formik.errors.projectTitle ? formik.errors.projectTitle : 'Project Title'} <span className={styles.required}>*</span>
+                            </label>
                             <input
                                 type='text'
                                 name='projectTitle'
                                 value={formik.values.projectTitle}
                                 onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
                                 required
                             />
                         </div>
                         <div className={styles.halfSections + ' ' + styles.rightSections}>
-                            <label htmlFor='campaignLiveDate'>Campaign Live Date <span className={styles.required}>*</span></label>
+                            <label
+                                htmlFor='campaignLiveDate' className={formik.touched.campaignLiveDate && formik.errors.campaignLiveDate ? styles.required : ''}>
+                                {formik.touched.campaignLiveDate && formik.errors.campaignLiveDate ? formik.errors.campaignLiveDate : 'Campaign Live Date'} <span className={styles.required}>*</span>
+                            </label>
                             <input
                                 type='date'
                                 name='campaignLiveDate'
                                 placeholder='DD-MM-YYYY'
                                 value={formik.values.campaignLiveDate}
                                 onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
                                 required
                             />
                         </div>
                         <div className={styles.halfSections + ' ' + styles.leftSections}>
-                            <label htmlFor='fullName'>Full Name <span className={styles.required}>*</span></label>
+                            <label
+                                htmlFor='firstName' className={formik.touched.firstName && formik.errors.firstName ? styles.required : ''}>
+                                {formik.touched.firstName && formik.errors.firstName ? formik.errors.firstName : 'Full Name'} <span className={styles.required}>*</span>
+                            </label>
                             <input
                                 className={styles.halfInput + ' ' + styles.leftInput}
                                 type='text'
@@ -70,6 +132,7 @@ function BriefingForm() {
                                 placeholder='First Name'
                                 value={formik.values.firstName}
                                 onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
                                 required
                             />
                             <input
@@ -82,13 +145,17 @@ function BriefingForm() {
                             />
                         </div>
                         <div className={styles.halfSections + ' ' + styles.rightSections}>
-                            <label htmlFor='email'>Email <span className={styles.required}>*</span></label>
+                            <label
+                                htmlFor='email' className={formik.touched.email && formik.errors.email ? styles.required : ''}>
+                                {formik.touched.email && formik.errors.email ? formik.errors.email : 'Email'} <span className={styles.required}>*</span>
+                            </label>
                             <input
                                 type='email'
                                 name='email'
                                 placeholder='example@example.com'
                                 value={formik.values.email}
                                 onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
                                 required
                             />
                         </div>
@@ -102,17 +169,24 @@ function BriefingForm() {
                             />
                         </div>
                         <div className={styles.halfSections + ' ' + styles.rightSections}>
-                            <label htmlFor='mediaBuyerEmail'>Media Buyer Email</label>
+                            <label
+                                htmlFor='mediaBuyerEmail' className={formik.touched.mediaBuyerEmail && formik.errors.mediaBuyerEmail ? styles.required : ''}>
+                                {formik.touched.mediaBuyerEmail && formik.errors.mediaBuyerEmail ? formik.errors.mediaBuyerEmail : 'Media Buyer Email'} <span className={styles.required}>*</span>
+                            </label>
                             <input
                                 type='email'
                                 name='mediaBuyerEmail'
                                 placeholder='example@example.com'
                                 value={formik.values.mediaBuyerEmail}
                                 onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
                             />
                         </div>
                         <div className={styles.halfSections + ' ' + styles.leftSections}>
-                            <label htmlFor='ftCM'>Flashtalking Campaign Manager <span className={styles.required}>*</span></label>
+                            <label
+                                htmlFor='ftCM' className={formik.touched.ftCMFirstName && formik.errors.ftCMFirstName ? styles.required : ''}>
+                                Flashtalking Campaign Manager <span className={styles.required}>*</span>
+                            </label>
                             <input
                                 className={styles.halfInput + ' ' + styles.leftInput}
                                 type='text'
@@ -120,6 +194,7 @@ function BriefingForm() {
                                 placeholder='First Name'
                                 value={formik.values.ftCMFirstName}
                                 onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
                                 required
                             />
                             <input
@@ -141,12 +216,16 @@ function BriefingForm() {
                             />
                         </div>
                         <div className={styles.halfSections + ' ' + styles.leftSections}>
-                            <label htmlFor='sizesRequired'>Creative Sizes Required <span className={styles.required}>*</span></label>
+                            <label
+                                htmlFor='sizesRequired' className={formik.touched.sizesRequired && formik.errors.sizesRequired ? styles.required : ''}>
+                                {formik.touched.sizesRequired && formik.errors.sizesRequired ? formik.errors.sizesRequired : 'Creatives Sizes Required'} <span className={styles.required}>*</span>
+                            </label>
                             <input
                                 type='text'
                                 name='sizesRequired'
                                 value={formik.values.sizesRequired}
                                 onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
                                 required
                             />
                         </div>
@@ -255,24 +334,32 @@ function BriefingForm() {
                             </div>
                         </div>
                         <div className={styles.fullSections}>
-                            <label htmlFor='projectDesc'>Project Description <span className={styles.required}>*</span></label>
+                            <label
+                                htmlFor='projectDesc' className={formik.touched.projectDesc && formik.errors.projectDesc ? styles.required : ''}>
+                                {formik.touched.projectDesc && formik.errors.projectDesc ? formik.errors.projectDesc : 'Project Description'} <span className={styles.required}>*</span>
+                            </label>
                             <textarea
                                 name='projectDesc'
                                 rows='5'
                                 placeholder='Type Here'
                                 value={formik.values.projectDesc}
                                 onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
                                 required
                             ></textarea>
                         </div>
                         <div className={styles.fullSections}>
-                            <label htmlFor='businessObj'>Business Objective & KPI's <span className={styles.required}>*</span></label>
+                            <label
+                                htmlFor='businessObj' className={formik.touched.businessObj && formik.errors.businessObj ? styles.required : ''}>
+                                {formik.touched.businessObj && formik.errors.businessObj ? formik.errors.businessObj : "Business Objective & KPI's"} <span className={styles.required}>*</span>
+                            </label>
                             <textarea
                                 name='businessObj'
                                 rows='5'
                                 placeholder='Type Here'
                                 value={formik.values.businessObj}
                                 onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
                                 required
                             ></textarea>
                         </div>
@@ -281,14 +368,19 @@ function BriefingForm() {
 
                         <h2>Design</h2>
                         <div className={styles.halfSections + ' ' + styles.leftSections}>
-                            <label htmlFor='suppliedDesigns'>Designs To Be Supplied By <span className={styles.required}>*</span></label>
+                            <label
+                                htmlFor='suppliedDesigns' className={formik.touched.suppliedDesigns && formik.errors.suppliedDesigns ? styles.required : ''}>
+                                {formik.touched.suppliedDesigns && formik.errors.suppliedDesigns ? formik.errors.suppliedDesigns : 'Designs To Be Supplied By'} <span className={styles.required}>*</span>
+                            </label>
                             <select
                                 className={styles.select}
                                 name='suppliedDesigns'
                                 value={formik.values.suppliedDesigns}
                                 onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
                                 required
                             >
+                                <option>----</option>
                                 <option>Client</option>
                                 <option>Flashtalking</option>
                             </select>
@@ -392,7 +484,6 @@ function BriefingForm() {
                                 placeholder='example@example.com'
                                 value={formik.values.signOffEmail}
                                 onChange={formik.handleChange}
-                                required
                             />
                         </div>
 
@@ -452,12 +543,16 @@ function BriefingForm() {
 
                         <h2>Additional Information</h2>
                         <div className={styles.fullSections}>
-                            <label htmlFor='assetLink'>Please Send Us Anything Required Here (WeTransfer, DropBox etc.)</label>
+                            <label
+                                htmlFor='assetLink' className={formik.touched.assetLink && formik.errors.assetLink ? styles.required : ''}>
+                                {formik.touched.assetLink && formik.errors.assetLink ? formik.errors.assetLink : 'Please Send Us Anything Required Here (WeTransfer, DropBox etc.)'}
+                            </label>
                             <input
                                 type='text'
                                 name='assetLink'
                                 value={formik.values.assetLink}
                                 onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
                             />
                         </div>
                         <div className={styles.fullSections}>
@@ -471,12 +566,16 @@ function BriefingForm() {
                             ></textarea>
                         </div>
                         <div className={styles.fullSections}>
-                            <label htmlFor='addURL'>Additional URL</label>
+                            <label
+                                htmlFor='addURL' className={formik.touched.addURL && formik.errors.addURL ? styles.required : ''}>
+                                {formik.touched.addURL && formik.errors.addURL ? formik.errors.addURL : 'Additional URL'}
+                            </label>
                             <input
                                 type='text'
                                 name='addURL'
                                 value={formik.values.addURL}
                                 onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
                             />
                         </div>
 
