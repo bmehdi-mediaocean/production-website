@@ -1,8 +1,21 @@
 main {
     height: 100vh;
     display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
-    justify-content: center;
+}
+
+.imageDiv {
+    position: relative;
+    flex: 1 1 0%;
+    height: 7.5%;
+    margin: 2%;
+}
+
+.logo {
+    width: auto;
+    height: 100%;
 }
 
 form {
@@ -164,4 +177,24 @@ textarea {
 textarea:focus {
     border-color: #ec4899;
     outline: 0;
+}
+
+.buttonDiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button {
+    background-color: rgb(236, 72, 153);
+    font-family: "Lato-Bold";
+    font-size: 0.875rem; /* 14px */
+    line-height: 1.25rem; /* 20px */
+    color: white;
+    padding-top: 0.75rem; /* 12px */
+    padding-bottom: 0.75rem; /* 12px */
+    margin-top: 1.5rem; /* 24px */
+    border: none;
+    border-radius: 0.5rem;
+    width: 50%;
 }
