@@ -1,0 +1,30 @@
+main {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.mainDiv {
+    background-color: white;
+    display: flex;
+    border-radius: 0.5rem;
+    width: 50%;
+    font-family: "Lato-Regular";
+    color: rgb(55, 65, 81);
+    padding: 4rem;
+}
+
+.mainHeadline {
+    font-size: 1.875rem; /* 30px */
+    line-height: 2.25rem; /* 36px */
+    padding-bottom: 1rem;
+    font-family: "Lato-Bold";
+}
+
+.mainCopy {
+    font-size: 1.125rem; /* 18px */
+    line-height: 1.75rem; /* 28px */
+    color: rgb(107 114 128);
+}

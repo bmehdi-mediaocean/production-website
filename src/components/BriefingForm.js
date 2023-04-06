@@ -6,6 +6,9 @@ import * as Yup from 'yup';
 
 function BriefingForm() {
 
+    /* Router */
+    //const router = useRouter();
+
     const yesterday = new Date(Date.now() -86400000);
 
     /* Formik Logic */
@@ -67,6 +70,7 @@ function BriefingForm() {
         //Submit Form
         onSubmit: (values) => {
             console.log(values);
+            //router.push({pathname: '/success', query: values});
         },
     });
 
@@ -595,6 +599,6 @@ function BriefingForm() {
             </form>
         </main>
     );
-  }
+}
 
-  export default BriefingForm;
+export default BriefingForm;
